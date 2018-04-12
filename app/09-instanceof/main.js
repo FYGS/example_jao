@@ -8,3 +8,7 @@ console.log('function() {} instanceof Object', function() {} instanceof Object);
 console.log('() => {} instanceof Object', (() => {}) instanceof Object);
 console.log('class {} instanceof Object', class {} instanceof Object);
 
+// a little bit deeper...
+console.log('Object instanceof Function', Object instanceof Function);
+console.log('Function instanceof Object', Function instanceof Object);
+
