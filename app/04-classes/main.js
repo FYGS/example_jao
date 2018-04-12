@@ -8,5 +8,5 @@ function Person(name, age) {
 
 const alice = new Person('Alice', 23);
 alice.talk();
-const bob = new Person('Bob', 23);
+const bob = new Person('Bob', 31);
 bob.talk();
