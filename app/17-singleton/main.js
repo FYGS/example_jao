@@ -24,3 +24,4 @@ const system2 = System.getInstance();
 console.log('system2', system2);
 console.log('system === system2', system === system2);
 
+// exercice : rewrite this in ES5.
