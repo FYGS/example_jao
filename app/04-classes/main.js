@@ -6,7 +6,6 @@ function Person(name, age) {
     }
 }
 
-
 const alice = new Person('Alice', 23);
 alice.talk();
 const bob = new Person('Bob', 23);
