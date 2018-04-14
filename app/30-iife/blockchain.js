@@ -8,14 +8,8 @@
         }
         return acc;
     }
-
     var data = 'this is the initial block';
-    var genesisBlock = {
-        data: data,
-        previous: undefined,
-        hash: hash(data),
-    };
-
+    var genesisBlock = { data: data, previous: undefined, hash: hash(data) };
     var blockchain = {
         lastBlock: genesisBlock,
         add: function (data) {
@@ -25,19 +19,14 @@
                 hash: hash(data + this.lastBlock.hash),
             };
         },
-        log: function() {
+        log: function () {
             var block = this.lastBlock;
             while (true) {
                 console.log('block:[' + block.data + '], hash=' + block.hash);
                 block = block.previous;
-                if (block === undefined) {
-                    break;
-                }
+                if (block === undefined) break;
             }
         }
     }
-
-    // export
-    window.blockchain = blockchain;
-
+    window.blockchain = blockchain; // export
 })();
