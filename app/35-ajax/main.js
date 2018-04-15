@@ -5,7 +5,7 @@
         console.log("cleaning");
         document.getElementById("myDiv").innerHTML = "";
     }
-    
+
     function loadXMLDocAsync() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -16,7 +16,7 @@
         xmlhttp.open("GET", "content.json", true);
         xmlhttp.send();
     }
-    
+
     function loadXMLDocSync() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -30,10 +30,6 @@
         console.log("send finished");
     }
 
-    window.ajax = {
-        clean,
-        loadXMLDocAsync,
-        loadXMLDocSync
-    };
+    window.ajax = { clean, loadXMLDocAsync, loadXMLDocSync };
 
 })();
