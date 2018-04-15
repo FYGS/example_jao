@@ -1,24 +1,24 @@
 'use strict';
 
-import jshashes from 'jshashes';
-
-const hash =jshashes.SHA1().hex;
+import Hashes from 'jshashes';
+const hash = (new Hashes.SHA1).hex;
 
 const data = 'this is the initial block';
-const genesisBlock = { data: data, previous: undefined, hash: hash(data) };
+const genesisBlock = { id: 0, data: data, previous: undefined, hash: hash(data) };
 const blockchain = {
     lastBlock: genesisBlock,
     add: function (data) {
+        const id = this.lastBlock.id + 1;
         this.lastBlock = {
-            data: data,
+            id, data,
             previous: this.lastBlock,
-            hash: hash(data + this.lastBlock.hash),
+            hash: hash(id + data + this.lastBlock.hash),
         };
     },
     log: function () {
         var block = this.lastBlock;
         while (true) {
-            console.log('block:[' + block.data + '], hash=' + block.hash);
+            console.log(`block[${block.id}]:[${block.data}], hash=${block.hash}`);
             block = block.previous;
             if (block === undefined) break;
         }
