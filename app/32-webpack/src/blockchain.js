@@ -1,4 +1,6 @@
-'use strict';
+// 'use strict'; NO NEED ANYMORE OF USE STRICT BECAUSE OF ES6 MODULE MODE
+// WEBPACK USES ABOVE USE STRICT SO NO NEED.
+
 
 import Hashes from 'jshashes'; // ES6 import notation.
 const hash = (new Hashes.SHA1).hex;
