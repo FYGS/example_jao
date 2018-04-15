@@ -1,9 +1,9 @@
 'use strict';
 
-import Hashes from 'jshashes';
+import Hashes from 'jshashes'; // ES6 import notation.
 const hash = (new Hashes.SHA1).hex;
 
-const data = 'this is the initial block';
+const data = 'this is the genesis block';
 const genesisBlock = { id: 0, data: data, previous: undefined, hash: hash(data) };
 const blockchain = {
     lastBlock: genesisBlock,
