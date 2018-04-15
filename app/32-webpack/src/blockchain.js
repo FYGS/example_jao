@@ -1,12 +1,9 @@
 'use strict';
 
-function hash(str) {
-    let acc = 634563452;
-    for (let v of str) {
-        acc = acc * v.charCodeAt(0) % 3241234;
-    }
-    return acc;
-}
+import jshashes from 'jshashes';
+
+const hash =jshashes.SHA1().hex;
+
 const data = 'this is the initial block';
 const genesisBlock = { data: data, previous: undefined, hash: hash(data) };
 const blockchain = {
@@ -27,4 +24,4 @@ const blockchain = {
         }
     }
 }
-module.exports = blockchain; // export
+export default blockchain; // export ES6 (webpack)
