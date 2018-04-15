@@ -14,5 +14,6 @@ module.exports.BlockChainUtils = class BlockChainUtils {
             `${block.id};${block.data};${block.hash}
 `, '');
         fs.writeFileSync(filename, accumulator);
+        console.log('file written.');
     }
 }
