@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build32": "cd app/32-webpack && webpack --mode development -w",
+    "build33": "cd app/33-dom && webpack --mode development -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
