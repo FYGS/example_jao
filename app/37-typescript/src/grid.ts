@@ -1,6 +1,7 @@
 export type Point = [number, number];
 
 export class Grid {
+    mode: string;
     element: HTMLElement;
 
     cells: HTMLElement[][];
@@ -21,6 +22,12 @@ export class Grid {
             }
             html += `<div class="row">${row}</div>`;
         }
+
+        const editor = `<div class="editor">
+    <button class="pencil">Pencil</button>
+    <button class="eraser">Eraser</button>
+    <button class="save">Save</button>
+</div>`;
 
         element.innerHTML = `<div class="table">${html}</div>`;
 

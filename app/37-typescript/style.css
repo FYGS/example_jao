@@ -25,3 +25,8 @@
 .active {
     background: black;
 }
+
+.editor {
+    display: inline-flex;
+    flex-flow: column nowrap;
+}

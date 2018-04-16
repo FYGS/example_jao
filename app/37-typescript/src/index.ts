@@ -1,9 +1,12 @@
 import { Grid } from './grid';
 import { Conway } from './conway';
+import { GridEditor } from './grid-editor';
 
 const grid = new Grid(30, 30);
+const gridEditor = new GridEditor(grid);
 
 grid.render(document.querySelector('#root'));
+gridEditor.render();
 
 grid.set(3, 2);
 
