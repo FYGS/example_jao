@@ -2,12 +2,12 @@ function Person(name, age) {
     this.name = name;
     let privateAge = age;
 
-    function privateTalk() {
-        console.log('Hello! My name is %s and I am %d years old.', this.name, privateAge);
+    function privateTalk(p) {
+        console.log('Hello! My name is %s and I am %d years old.', p.name, privateAge);
     }
 
     this.talk = function () {
-        privateTalk();
+        privateTalk(this);
     };
 }
 
