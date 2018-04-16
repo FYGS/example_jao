@@ -55,4 +55,8 @@ export class Grid {
     reset() {
         this.cells.forEach(r => r.forEach(c => c.classList.remove('active')));
     }
+
+    getCellList() {
+        return new Array(this.row * this.col).fill(0).map((n, i) => [Math.floor(i / this.row), i % this.col]);
+    }
 }
