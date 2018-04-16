@@ -10,10 +10,14 @@ export class GridEditor {
         editor.innerHTML =  `
 <button class="toggle">Start</button>
 <button class="clear">Clear</button>
+<button class="faster">Faster (+)</button>
+<button class="slower">Slower (-)</button>
 `;
         this.grid.element.appendChild(editor);
         this.grid.element.querySelector('.editor .toggle').addEventListener('click', this.toggle.bind(this));
         this.grid.element.querySelector('.editor .clear').addEventListener('click', this.clear.bind(this));
+        this.grid.element.querySelector('.editor .faster').addEventListener('click', this.faster.bind(this));
+        this.grid.element.querySelector('.editor .slower').addEventListener('click', this.slower.bind(this));
     }
 
     toggle() {
@@ -30,6 +34,15 @@ export class GridEditor {
     clear() {
         this.grid.reset();
     }
+
+    faster() {
+        this.grid.time /= 1.10;
+    }
+
+    slower() {
+        this.grid.time *= 1.10;
+    }
+
    
 
     
