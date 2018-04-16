@@ -79,8 +79,15 @@ export class Conway {
     }
 
     setBar(n: number) {
-        const array = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2), Math.floor(this.grid.col / 2) + i]);
+        const array = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2), Math.floor(this.grid.col / 3) + i]);
         this.set(array);
+    }
+
+    setDBar(n: number) {
+        const array = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2), Math.floor(this.grid.col / 3) + i]);
+        const array2 = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2) + 1, Math.floor(this.grid.col / 3) + i]);
+        const a = array.concat(array2);
+        this.set(a);
     }
 
 }
