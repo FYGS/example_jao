@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+.table {
+    display: inline-flex;
+    flex-flow: column nowrap;
+    background: black;
+    justify-content: space-evenly;
+    border: 0.05em solid black;
+}
+
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    margin: 0.05em;
+    background: white;
+}

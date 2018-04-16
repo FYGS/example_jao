@@ -1,11 +1,5 @@
-interface Grid {
-    row: number;
-    col: number;
-}
+import { Grid } from './grid';
 
-const grid: Grid = {
-    row: 3,
-    col: 5,
-}
+const grid = new Grid(10, 20);
 
-console.log('grid', grid);
+grid.render(document.querySelector('#root'));
