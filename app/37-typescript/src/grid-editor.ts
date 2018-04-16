@@ -5,15 +5,15 @@ export class GridEditor {
     constructor(public grid: Grid) { }
 
     render() {
-
-
         const editor = document.createElement('div');
         editor.classList.add('editor');
         editor.innerHTML =  `
 <button class="toggle">Start</button>
+<button class="clear">Clear</button>
 `;
         this.grid.element.appendChild(editor);
         this.grid.element.querySelector('.editor .toggle').addEventListener('click', this.toggle.bind(this));
+        this.grid.element.querySelector('.editor .clear').addEventListener('click', this.clear.bind(this));
     }
 
     toggle() {
@@ -25,7 +25,10 @@ export class GridEditor {
         } else {
             button.innerHTML = 'Start';
         }
-        
+    }
+
+    clear() {
+        this.grid.reset();
     }
    
 

@@ -1,17 +1,24 @@
+import { GridEditor } from "./grid-editor";
+
 export type Point = [number, number];
 
 export interface Ruler {
     start: {(): void};
+    grid: Grid;
+    save: {(): void};
 }
 
 export class Grid {
     ruler: Ruler = undefined;
     isRunning: boolean = false;
     element: HTMLElement;
+    gridEditor: GridEditor = undefined;
 
     cells: HTMLElement[][];
 
-    constructor(public row: number, public col: number) { }
+    constructor(public row: number, public col: number) { 
+        this.gridEditor = new GridEditor(this);
+    }
 
     render(element: HTMLElement) {
         console.log('render', element);
@@ -37,6 +44,7 @@ export class Grid {
         element.innerHTML = `<div class="table">${html}</div>`;
 
         this.initCells();
+        this.gridEditor.render();
     }
 
     initCells() {
@@ -86,7 +94,13 @@ export class Grid {
         if (!this.ruler) {
             console.log('no ruler');
         }
+        this.ruler.save();
         this.ruler.start();
+    }
+
+    setRuler(ruler: Ruler) {
+        this.ruler = ruler;
+        ruler.grid = this;
     }
 
     

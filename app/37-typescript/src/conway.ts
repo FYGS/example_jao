@@ -10,9 +10,9 @@ const sleep = (time) => {
 
 export class Conway implements Ruler {
     points: Point[] = [];
-    constructor(public grid: Grid) {
-        this.grid.ruler = this;
-     }
+    public grid: Grid;
+    constructor() {
+    }
 
     set(array: Point[]) {
         this.points = array;
@@ -56,12 +56,13 @@ export class Conway implements Ruler {
                 return result;
             }, 0);
             if (n > 3 || n < 2) {
-
-                // do not add this cell
+                // the cell is not alive.
             } else if (n === 3) {
+                // the cell is alive
                 result.push(p);
             } else if (n === 2) {
                 if (this.isAlive(p)) {
+                    // the cell STAYS alive.
                     result.push(p);
                 }
             }
@@ -79,16 +80,15 @@ export class Conway implements Ruler {
         return this.points.find(p => p[0] === ap[0] && p[1] === ap[1]) !== undefined;
     }
 
-    setBar(n: number) {
-        const array = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2), Math.floor(this.grid.col / 3) + i]);
-        this.set(array);
-    }
-
-    setDBar(n: number) {
-        const array = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2), Math.floor(this.grid.col / 3) + i]);
-        const array2 = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2) + 1, Math.floor(this.grid.col / 3) + i]);
-        const a = array.concat(array2);
-        this.set(a);
+    save() {
+        const pointSet = [];
+        this.grid.cells.forEach((row, i) => row.forEach((cell, j) => {
+            if (cell.classList.contains('active')) {
+                const p = <Point>[i, j];
+                pointSet.push(p);
+            }
+        }));
+        this.set(pointSet);
     }
 
 }
