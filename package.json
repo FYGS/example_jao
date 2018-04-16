@@ -4,9 +4,11 @@
   "description": "javascript example",
   "main": "index.js",
   "dependencies": {
-    "jshashes": "^1.0.7"
+    "jshashes": "^1.0.7",
+    "typescript": "^2.8.1"
   },
   "devDependencies": {
+    "awesome-typescript-loader": "^5.0.0",
     "express": "^4.16.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
@@ -17,6 +19,7 @@
   "scripts": {
     "build32": "cd app/32-webpack && webpack --mode development -w",
     "build33": "cd app/33-dom && webpack --mode development -w",
+    "build37": "cd app/37-typescript && webpack --mode development -w",
     "start35": "node app/35-ajax/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
