@@ -7,7 +7,7 @@ export class GridEditor {
     render() {
         const editor = document.createElement('div');
         editor.classList.add('editor');
-        editor.innerHTML =  `
+        editor.innerHTML = `
 <button class="toggle">Start</button>
 <button class="clear">Clear</button>
 <button class="faster">Faster (+)</button>
@@ -32,18 +32,18 @@ export class GridEditor {
     }
 
     clear() {
+        if (this.grid.isRunning) {
+            this.toggle();
+        }
         this.grid.reset();
     }
 
     faster() {
-        this.grid.time /= 1.10;
+        this.grid.time /= 2;
     }
 
     slower() {
-        this.grid.time *= 1.10;
+        this.grid.time *= 2;
     }
 
-   
-
-    
 }

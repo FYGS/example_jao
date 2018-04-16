@@ -9,7 +9,7 @@ export interface Ruler {
 }
 
 export class Grid {
-    time: number = 200;
+    time: number = 100;
     ruler: Ruler = undefined;
     isRunning: boolean = false;
     element: HTMLElement;

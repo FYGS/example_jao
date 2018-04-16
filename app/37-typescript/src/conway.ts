@@ -37,6 +37,9 @@ export class Conway implements Ruler {
 
     iterateOnce() {
         return sleep(this.grid.time).then(() => {
+            if (!this.grid.isRunning) {
+                return;
+            }
             const newPoints = this.compute();
             this.set(newPoints);
             this.points = newPoints;
