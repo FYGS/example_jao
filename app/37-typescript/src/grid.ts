@@ -1,7 +1,12 @@
 export type Point = [number, number];
 
+export interface Ruler {
+    start: {(): void};
+}
+
 export class Grid {
-    mode: string;
+    ruler: Ruler = undefined;
+    isRunning: boolean = false;
     element: HTMLElement;
 
     cells: HTMLElement[][];
@@ -43,6 +48,13 @@ export class Grid {
             });
             this.cells.push(row);
         });
+        this.cells.forEach(row => row.forEach(c => c.addEventListener('click', () => {
+            if (c.classList.contains('active')) {
+                c.classList.remove('active');
+            } else {
+                c.classList.add('active');
+            }
+        })));
     }
 
     getCell(x, y) {
@@ -68,4 +80,14 @@ export class Grid {
     getCellList(): Point[] {
         return new Array(this.row * this.col).fill(0).map((n, i) => <Point>[Math.floor(i / this.col), i % this.col]);
     }
+
+    start() {
+        
+        if (!this.ruler) {
+            console.log('no ruler');
+        }
+        this.ruler.start();
+    }
+
+    
 }

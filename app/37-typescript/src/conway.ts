@@ -1,4 +1,4 @@
-import { Grid, Point } from "./grid";
+import { Grid, Point, Ruler } from "./grid";
 
 const sleep = (time) => {
     return new Promise((resolve) => {
@@ -8,9 +8,11 @@ const sleep = (time) => {
     });
 };
 
-export class Conway {
+export class Conway implements Ruler {
     points: Point[] = [];
-    constructor(public grid: Grid) { }
+    constructor(public grid: Grid) {
+        this.grid.ruler = this;
+     }
 
     set(array: Point[]) {
         this.points = array;
@@ -24,14 +26,13 @@ export class Conway {
         });
     }
 
-    iterate(n: number) {
-        let p = Promise.resolve();
-
-        for (let i = 0; i < n; i++) {
-            p = p.then(() => {
-                return this.iterateOnce();
-            });
+    start() {
+        if (!this.grid.isRunning) {
+            return;
         }
+        this.iterateOnce().then(() => {
+            this.start();
+        });
     }
 
     iterateOnce() {
