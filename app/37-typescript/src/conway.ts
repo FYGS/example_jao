@@ -1,4 +1,4 @@
-import { Grid } from "./grid";
+import { Grid, Point } from "./grid";
 
 const sleep = (time) => {
     return new Promise((resolve) => {
@@ -7,8 +7,6 @@ const sleep = (time) => {
         }, time);
     });
 };
-
-type Point = [number, number];
 
 export class Conway {
     points: Point[] = [];
@@ -70,14 +68,19 @@ export class Conway {
         return result;
     }
 
-    getAround(p): Point[] {
+    getAround(p: Point): Point[] {
         return [[p[0] - 1, p[1] - 1], [p[0] - 1, p[1]], [p[0] - 1, p[1] + 1],
         [p[0], p[1] - 1], [p[0], p[1] + 1],
         [p[0] + 1, p[1] - 1], [p[0] + 1, p[1]], [p[0] + 1, p[1] + 1]];
     }
 
-    isAlive(ap) {
+    isAlive(ap: Point) {
         return this.points.find(p => p[0] === ap[0] && p[1] === ap[1]) !== undefined;
+    }
+
+    setBar(n: number) {
+        const array = new Array(n).fill(0).map((n, i) => <Point>[Math.floor(this.grid.row / 2), Math.floor(this.grid.col / 2) + i]);
+        this.set(array);
     }
 
 }

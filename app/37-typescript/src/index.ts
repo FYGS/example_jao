@@ -1,7 +1,7 @@
 import { Grid } from './grid';
 import { Conway } from './conway';
 
-const grid = new Grid(5, 8);
+const grid = new Grid(30, 30);
 
 grid.render(document.querySelector('#root'));
 
@@ -13,7 +13,9 @@ grid.set(3, 2);
 
 const conway = new Conway(grid);
 
-conway.set([[2, 4], [2, 5], [2, 6]]);
+conway.setBar(10);
 
-conway.iterate(10);
+// conway.set([[10, 14], [10, 15], [10, 16], [10, 17], [10, 18], [10, 19], [10, 20]]);
+
+conway.iterate(200);
 

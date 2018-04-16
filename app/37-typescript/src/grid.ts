@@ -1,3 +1,5 @@
+export type Point = [number, number];
+
 export class Grid {
     element: HTMLElement;
 
@@ -56,7 +58,7 @@ export class Grid {
         this.cells.forEach(r => r.forEach(c => c.classList.remove('active')));
     }
 
-    getCellList() {
-        return new Array(this.row * this.col).fill(0).map((n, i) => [Math.floor(i / this.col), i % this.col]);
+    getCellList(): Point[] {
+        return new Array(this.row * this.col).fill(0).map((n, i) => <Point>[Math.floor(i / this.col), i % this.col]);
     }
 }
