@@ -57,6 +57,6 @@ export class Grid {
     }
 
     getCellList() {
-        return new Array(this.row * this.col).fill(0).map((n, i) => [Math.floor(i / this.row), i % this.col]);
+        return new Array(this.row * this.col).fill(0).map((n, i) => [Math.floor(i / this.col), i % this.col]);
     }
 }

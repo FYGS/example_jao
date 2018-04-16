@@ -37,11 +37,8 @@ export class Conway {
     }
 
     iterateOnce() {
-
-        const newPoints = this.compute();
-
-        return sleep(1000).then(() => {
-            console.log('set');
+        return sleep(200).then(() => {
+            const newPoints = this.compute();
             this.set(newPoints);
             this.points = newPoints;
         });
@@ -49,9 +46,9 @@ export class Conway {
 
     compute(): Point[] {
         let result = [];
-        console.log('this.grid.getCellList()', this.grid.getCellList());
         this.grid.getCellList().forEach(p => {
             const around = this.getAround(p);
+
             const n = around.reduce((acc, ap) => {
                 let result = acc;
                 if (this.isAlive(ap)) {
@@ -59,7 +56,6 @@ export class Conway {
                 }
                 return result;
             }, 0);
-            console.log('n', n);
             if (n > 3 || n < 2) {
 
                 // do not add this cell
@@ -77,7 +73,7 @@ export class Conway {
     getAround(p): Point[] {
         return [[p[0] - 1, p[1] - 1], [p[0] - 1, p[1]], [p[0] - 1, p[1] + 1],
         [p[0], p[1] - 1], [p[0], p[1] + 1],
-        [p[0] + 1, p[1] - 1], [p[0] + 1, p[1]], [p[0] + 1], p[1] + 1];
+        [p[0] + 1, p[1] - 1], [p[0] + 1, p[1]], [p[0] + 1, p[1] + 1]];
     }
 
     isAlive(ap) {

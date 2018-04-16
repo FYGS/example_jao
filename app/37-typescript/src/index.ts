@@ -15,5 +15,5 @@ const conway = new Conway(grid);
 
 conway.set([[2, 4], [2, 5], [2, 6]]);
 
-conway.iterate(1);
+conway.iterate(10);
 
