@@ -45,6 +45,6 @@ export class Grid {
     }
 
     reset() {
-
+        this.cells.forEach(r => r.forEach(c => c.classList.remove('active')));
     }
 }
