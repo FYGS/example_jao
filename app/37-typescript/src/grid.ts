@@ -37,11 +37,19 @@ export class Grid {
     }
 
     getCell(x, y) {
-        return this.cells[x][y];
+        try {
+            return this.cells[x][y];
+        } catch (e) {
+            return undefined;
+        }
     }
 
-    set() {
-
+    set(x, y) {
+        const cell = this.getCell(x, y);
+        if (cell === undefined) {
+            return;
+        }
+        cell.classList.add('active');
     }
 
     reset() {
