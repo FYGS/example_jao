@@ -1,5 +1,5 @@
 export class Point {
-    static cache: Map<string, Point> = new Map();
+    private static cache: Map<string, Point> = new Map();
     constructor(public x: number, public y: number) {
         const s = this.toString();
         if (Point.cache.has(s)) {
