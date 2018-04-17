@@ -7,28 +7,20 @@ export class GridExample {
 
     constructor(public grid: Grid) { }
 
-
+    getMakeMethodNames() {
+        return Object.getOwnPropertyNames(GridExample.prototype).filter(m => m.startsWith('make'));
+    }
 
     set(str: string): void {
         console.log('str', str);
         this.grid.reset();
-        switch (str) {
-            case 'pentominoR':
-                this.makePentominoR();
-                break;
-            case 'glider':
-                this.makeGlider();
-                break;
-            case 'LWSS':
-                this.makeLWSS();
-                break;
-            case 'F':
-                this.makeF();
-                break;
-            default:
-                this.buildSet([]);
+        const methodNames = this.getMakeMethodNames().filter(m => m.substr('make'.length) === str);
 
+        if (methodNames.length === 0) {
+            throw new Error('Make method not found.');
         }
+
+        this[methodNames[0]]();
         this.grid.add(this.points);
     }
 
@@ -40,6 +32,9 @@ export class GridExample {
         }, new Set());
     }
 
+    makeEmpty() {
+        this.buildSet([]);
+    }
 
     makePentominoR() {
         this.buildSet([[0, 0], [0, 1], [1, 0], [0, -1], [-1, -1]]);
