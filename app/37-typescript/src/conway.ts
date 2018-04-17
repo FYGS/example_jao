@@ -1,13 +1,6 @@
 import { Grid, Ruler } from "./grid";
 import { Point } from "./Point";
-
-const sleep = (time) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, time);
-    });
-};
+import { sleep } from "./sleep";
 
 export class Conway implements Ruler {
     previousPoints: Set<Point> = new Set();
@@ -16,21 +9,19 @@ export class Conway implements Ruler {
 
     render() {
         this.grid.remove(this.previousPoints);
-        // this.grid.hardReset();
         this.grid.add(this.points);
-
     }
 
-    start() {
+    run() {
         if (!this.grid.isRunning) {
             return;
         }
-        this.iterateOnce().then(() => {
-            this.start();
+        this.iterate().then(() => {
+            this.run();
         });
     }
 
-    iterateOnce() {
+    iterate() {
         return sleep(this.grid.time).then(() => {
             if (!this.grid.isRunning) {
                 return;

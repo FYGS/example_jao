@@ -3,7 +3,7 @@ import { GridExample } from "./grid-example";
 import { Point } from "./Point";
 
 export interface Ruler {
-    start: { (): void };
+    run: { (): void };
     grid: Grid;
     save: { (): void };
 }
@@ -113,7 +113,7 @@ export class Grid {
             console.log('no ruler');
         }
         this.ruler.save();
-        this.ruler.start();
+        this.ruler.run();
     }
 
     setRuler(ruler: Ruler) {
