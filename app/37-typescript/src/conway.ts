@@ -10,6 +10,7 @@ const sleep = (time) => {
 };
 
 export class Conway implements Ruler {
+    previousPoints: Set<Point> = new Set();
     points: Set<Point> = new Set();
     public grid: Grid;
 
@@ -19,9 +20,9 @@ export class Conway implements Ruler {
     }
 
     render() {
-        this.grid.reset();
+        this.grid.remove(this.previousPoints);
         this.grid.add(this.points);
-        
+
     }
 
     start() {
@@ -40,6 +41,7 @@ export class Conway implements Ruler {
             }
             const newPoints = this.compute();
             this.set(newPoints);
+            this.previousPoints = this.points;
             this.points = newPoints;
             if (this.points.size === 0) {
                 this.grid.gridEditor.toggle();
@@ -78,7 +80,7 @@ export class Conway implements Ruler {
     getAround(p: Point): Point[] {
         return [new Point(p.x - 1, p.y - 1), new Point(p.x - 1, p.y), new Point(p.x - 1, p.y + 1),
         new Point(p.x, p.y - 1), new Point(p.x, p.y + 1),
-            new Point(p.x + 1, p.y - 1), new Point(p.x + 1, p.y), new Point(p.x + 1, p.y + 1)];
+        new Point(p.x + 1, p.y - 1), new Point(p.x + 1, p.y), new Point(p.x + 1, p.y + 1)];
     }
 
     getPointsToLookFor(): Set<Point> {

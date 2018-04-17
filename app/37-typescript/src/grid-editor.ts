@@ -51,7 +51,7 @@ export class GridEditor {
         if (this.grid.isRunning) {
             this.toggle();
         }
-        this.grid.reset();
+        this.grid.hardReset();
     }
 
     faster() {

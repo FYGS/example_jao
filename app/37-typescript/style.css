@@ -5,7 +5,7 @@
 .table {
     display: inline-flex;
     flex-flow: column nowrap;
-    background: black;
+    background: hsl(0, 0%, 90%);
     justify-content: space-evenly;
     border: 0.05em solid black;
 }

@@ -13,7 +13,7 @@ export class GridExample {
 
     set(str: string): void {
         console.log('str', str);
-        this.grid.reset();
+        this.grid.hardReset();
         const methodNames = this.getMakeMethodNames().filter(m => m.substr('make'.length) === str);
 
         if (methodNames.length === 0) {

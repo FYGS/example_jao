@@ -84,13 +84,27 @@ export class Grid {
         cell.classList.add('active');
     }
 
+    unset(x, y) {
+        const cell = this.getCell(x, y);
+        if (cell === undefined) {
+            return;
+        }
+        cell.classList.remove('active');
+    }
+
     add(points: Set<Point>) {
         points.forEach(p => {
             this.set(p.x, p.y);
         });
     }
 
-    reset() {
+    remove(points: Set<Point>) {
+        points.forEach(p => {
+            this.unset(p.x, p.y);
+        });
+    }
+
+    hardReset() {
         this.cells.forEach(r => r.forEach(c => c.classList.remove('active')));
     }
 
