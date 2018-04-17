@@ -18,7 +18,7 @@ export class GridEditor {
 <button class="faster">Faster (+)</button>
 <button class="slower">Slower (-)</button>
 <button class="log">Log</button>
-<select class="setup">
+<select class="setup" onfocus="this.selectedIndex = -1;">
         ${options}
 </select>
 `;
