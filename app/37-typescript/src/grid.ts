@@ -15,7 +15,7 @@ export class Grid {
 
     cells: HTMLElement[][];
 
-    constructor(public row: number, public col: number) { 
+    constructor(public row: number, public col: number, public cellSize: number = 30) { 
         this.gridEditor = new GridEditor(this);
     }
 
@@ -29,7 +29,7 @@ export class Grid {
         for (let i = 0; i < this.row; i++) {
             let row = '';
             for (let j = 0; j < this.col; j++) {
-                row += `<div class="cell"></div>`
+                row += `<div style="width: ${this.cellSize}px; height: ${this.cellSize}px;" class="cell"></div>`
             }
             html += `<div class="row">${row}</div>`;
         }

@@ -16,8 +16,6 @@
 }
 
 .cell {
-    width: 10px;
-    height: 10px;
     margin: 0.05em;
     background: white;
 }
@@ -29,4 +27,11 @@
 .editor {
     display: inline-flex;
     flex-flow: column nowrap;
+}
+
+button {
+    padding: 0.5em 1em;
+    background: #eee;
+    border: 1px solid black;
+    margin: 0.5em;
 }
