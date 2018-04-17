@@ -7,6 +7,11 @@ export class GridEditor {
     render() {
         const editor = document.createElement('div');
         editor.classList.add('editor');
+
+        const options = this.grid.example.getMakeMethodNames()
+            .map(m => `<option value="${m.substr('make'.length)}">${m.substr('make'.length)}</option>`)
+            .join();
+
         editor.innerHTML = `
 <button class="toggle">Start</button>
 <button class="clear">Clear</button>
@@ -14,11 +19,7 @@ export class GridEditor {
 <button class="slower">Slower (-)</button>
 <button class="log">Log</button>
 <select class="setup">
-    <option value="">empty</option>
-    <option value="pentominoR">Pentomino R</option>
-    <option value="glider">Glider</option>
-    <option value="LWSS">LWSS</option>
-    <option value="F">F</option>
+        ${options}
 </select>
 `;
         this.grid.element.appendChild(editor);
@@ -65,5 +66,5 @@ export class GridEditor {
         this.grid.example.set(str);
     }
 
-    
+
 }
