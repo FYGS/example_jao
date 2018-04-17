@@ -7,27 +7,32 @@ export class GridExample {
 
     constructor(public grid: Grid) { }
 
+
+
     set(str: string): void {
         console.log('str', str);
         this.grid.reset();
         switch (str) {
             case 'pentominoR':
-                this.getPentominoR();
+                this.makePentominoR();
                 break;
             case 'glider':
-                this.getGlider();
+                this.makeGlider();
                 break;
             case 'LWSS':
-                this.getLWSS();
+                this.makeLWSS();
+                break;
+            case 'F':
+                this.makeF();
                 break;
             default:
-                this.getSet([]);
+                this.buildSet([]);
 
         }
         this.grid.add(this.points);
     }
 
-    getSet(array: number[][]) {
+    buildSet(array: number[][]) {
         const c: Point = this.grid.getCenter();
         this.points = array.reduce((acc, p) => {
             acc.add(new Point(c.x - p[1], c.y + p[0]));
@@ -36,16 +41,20 @@ export class GridExample {
     }
 
 
-    getPentominoR() {
-        this.getSet([[0, 0], [0, 1], [1, 0], [0, -1], [-1, -1]]);
+    makePentominoR() {
+        this.buildSet([[0, 0], [0, 1], [1, 0], [0, -1], [-1, -1]]);
     }
 
-    getGlider() {
-        this.getSet([[-1, -1], [0, -1], [1, -1], [1, 0], [0, 1]]);
+    makeGlider() {
+        this.buildSet([[-1, -1], [0, -1], [1, -1], [1, 0], [0, 1]]);
     }
 
-    getLWSS() {
-        this.getSet([[-3, 3], [0, 3], [1, 2], [-3, 1], [1, 1], [-2, 0], [-1, 0], [0, 0], [1, 0]]);
+    makeLWSS() {
+        this.buildSet([[-3, 3], [0, 3], [1, 2], [-3, 1], [1, 1], [-2, 0], [-1, 0], [0, 0], [1, 0]]);
+    }
+
+    makeF() {
+        this.buildSet([[-2, 6], [-1, 6], [0, 6], [-2, 5], [-2, 4], [-1, 4], [-2, 3], [-2, 2], [-2, 1]]);
     }
 
 };

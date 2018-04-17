@@ -18,6 +18,7 @@ export class GridEditor {
     <option value="pentominoR">Pentomino R</option>
     <option value="glider">Glider</option>
     <option value="LWSS">LWSS</option>
+    <option value="F">F</option>
 </select>
 `;
         this.grid.element.appendChild(editor);
