@@ -1,6 +1,20 @@
 import { GridEditor } from "./grid-editor";
 
-export type Point = [number, number];
+export class Point {
+    static cache: Map<string, Point> = new Map();
+    constructor(public x: number, public y: number) {
+        const s = this.toString();
+        if (Point.cache.has(s)) {
+            return Point.cache.get(s);
+        } else {
+            Point.cache.set(s, this);
+        }
+    }
+
+    toString() {
+        return `(${this.x},${this.y})`;
+    }
+};
 
 export interface Ruler {
     start: {(): void};
@@ -87,7 +101,7 @@ export class Grid {
     }
 
     getCellList(): Point[] {
-        return new Array(this.row * this.col).fill(0).map((n, i) => <Point>[Math.floor(i / this.col), i % this.col]);
+        return new Array(this.row * this.col).fill(0).map((n, i) => new Point(Math.floor(i / this.col), i % this.col));
     }
 
     start() {

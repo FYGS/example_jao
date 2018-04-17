@@ -9,20 +9,20 @@ const sleep = (time) => {
 };
 
 export class Conway implements Ruler {
-    points: Point[] = [];
+    points: Set<Point> = new Set();
     public grid: Grid;
     constructor() {
     }
 
-    set(array: Point[]) {
-        this.points = array;
+    set(set: Set<Point>) {
+        this.points = set;
         this.render();
     }
 
     render() {
         this.grid.reset();
         this.points.forEach(p => {
-            this.grid.set(p[0], p[1]);
+            this.grid.set(p.x, p.y);
         });
     }
 
@@ -43,12 +43,16 @@ export class Conway implements Ruler {
             const newPoints = this.compute();
             this.set(newPoints);
             this.points = newPoints;
+            if (this.points.size === 0) {
+                this.grid.gridEditor.toggle();
+            }
         });
     }
 
-    compute(): Point[] {
-        let result = [];
-        this.grid.getCellList().forEach(p => {
+    compute(): Set<Point> {
+        let result = new Set();
+        // this.grid.getCellList().forEach(p => {
+        this.getPointsToLookFor().forEach(p => {
             const around = this.getAround(p);
 
             const n = around.reduce((acc, ap) => {
@@ -62,11 +66,11 @@ export class Conway implements Ruler {
                 // the cell is not alive.
             } else if (n === 3) {
                 // the cell is alive
-                result.push(p);
+                result.add(p);
             } else if (n === 2) {
                 if (this.isAlive(p)) {
                     // the cell STAYS alive.
-                    result.push(p);
+                    result.add(p);
                 }
             }
         });
@@ -74,21 +78,30 @@ export class Conway implements Ruler {
     }
 
     getAround(p: Point): Point[] {
-        return [[p[0] - 1, p[1] - 1], [p[0] - 1, p[1]], [p[0] - 1, p[1] + 1],
-        [p[0], p[1] - 1], [p[0], p[1] + 1],
-        [p[0] + 1, p[1] - 1], [p[0] + 1, p[1]], [p[0] + 1, p[1] + 1]];
+        return [new Point(p.x - 1, p.y - 1), new Point(p.x - 1, p.y), new Point(p.x - 1, p.y + 1),
+        new Point(p.x, p.y - 1), new Point(p.x, p.y + 1),
+            new Point(p.x + 1, p.y - 1), new Point(p.x + 1, p.y), new Point(p.x + 1, p.y + 1)];
+    }
+
+    getPointsToLookFor(): Set<Point> {
+        const result = new Set();
+        this.points.forEach(p => {
+            result.add(p);
+            this.getAround(p).forEach(ap => result.add(ap));
+        });
+        return result;
     }
 
     isAlive(ap: Point) {
-        return this.points.find(p => p[0] === ap[0] && p[1] === ap[1]) !== undefined;
+        return this.points.has(ap);
     }
 
     save() {
-        const pointSet = [];
+        const pointSet = new Set();
         this.grid.cells.forEach((row, i) => row.forEach((cell, j) => {
             if (cell.classList.contains('active')) {
-                const p = <Point>[i, j];
-                pointSet.push(p);
+                const p = new Point(i, j);
+                pointSet.add(p);
             }
         }));
         this.set(pointSet);
