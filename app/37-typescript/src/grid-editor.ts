@@ -12,10 +12,12 @@ export class GridEditor {
 <button class="clear">Clear</button>
 <button class="faster">Faster (+)</button>
 <button class="slower">Slower (-)</button>
+<button class="log">Log</button>
 <select class="setup">
     <option value="">empty</option>
     <option value="pentominoR">Pentomino R</option>
     <option value="glider">Glider</option>
+    <option value="LWSS">LWSS</option>
 </select>
 `;
         this.grid.element.appendChild(editor);
@@ -23,6 +25,7 @@ export class GridEditor {
         this.grid.element.querySelector('.editor .clear').addEventListener('click', this.clear.bind(this));
         this.grid.element.querySelector('.editor .faster').addEventListener('click', this.faster.bind(this));
         this.grid.element.querySelector('.editor .slower').addEventListener('click', this.slower.bind(this));
+        this.grid.element.querySelector('.editor .log').addEventListener('click', this.grid.log.bind(this.grid));
 
         const select: HTMLSelectElement = this.grid.element.querySelector('.editor .setup');
         select.addEventListener('change', (e) => {
@@ -61,4 +64,5 @@ export class GridEditor {
         this.grid.example.set(str);
     }
 
+    
 }

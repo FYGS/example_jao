@@ -3,9 +3,9 @@ import { GridExample } from "./grid-example";
 import { Point } from "./Point";
 
 export interface Ruler {
-    start: {(): void};
+    start: { (): void };
     grid: Grid;
-    save: {(): void};
+    save: { (): void };
 }
 
 export class Grid {
@@ -18,7 +18,7 @@ export class Grid {
 
     cells: HTMLElement[][];
 
-    constructor(public row: number, public col: number, public cellSize: number = 30) { 
+    constructor(public row: number, public col: number, public cellSize: number = 30) {
         this.gridEditor = new GridEditor(this);
         this.example = new GridExample(this);
     }
@@ -109,5 +109,17 @@ export class Grid {
 
     getCenter(): Point {
         return new Point(Math.floor(this.row / 2), Math.floor(this.col / 2));
+    }
+
+    log() {
+        const c = this.getCenter();
+        const array = [];
+        this.cells.forEach((row, i) => row.forEach((cell, j) => {
+            if (cell.classList.contains('active')) {
+                array.push([j - c.y, c.x - i]);
+            }
+        }));
+        const string = '[' + array.map(p => '[' + p.join(',') + ']').join(',') + ']';
+        console.log('log', string);
     }
 }
