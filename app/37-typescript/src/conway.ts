@@ -12,8 +12,6 @@ const sleep = (time) => {
 export class Conway implements Ruler {
     points: Set<Point> = new Set();
     public grid: Grid;
-    constructor() {
-    }
 
     set(set: Set<Point>) {
         this.points = set;
