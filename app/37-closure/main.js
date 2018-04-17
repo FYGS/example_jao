@@ -10,7 +10,7 @@ function repeat(times) {
 
     function count() {
         console.log(`Count: ${counter}`);
-        counter++; //closure
+        counter++; // closure
     }
     for (let i = 0; i < times; i++) {
         count();
