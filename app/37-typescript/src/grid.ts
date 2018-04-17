@@ -1,21 +1,5 @@
 import { GridEditor } from "./grid-editor";
 
-export class Point {
-    static cache: Map<string, Point> = new Map();
-    constructor(public x: number, public y: number) {
-        const s = this.toString();
-        if (Point.cache.has(s)) {
-            return Point.cache.get(s);
-        } else {
-            Point.cache.set(s, this);
-        }
-    }
-
-    toString() {
-        return `(${this.x},${this.y})`;
-    }
-};
-
 export interface Ruler {
     start: {(): void};
     grid: Grid;
@@ -98,10 +82,6 @@ export class Grid {
 
     reset() {
         this.cells.forEach(r => r.forEach(c => c.classList.remove('active')));
-    }
-
-    getCellList(): Point[] {
-        return new Array(this.row * this.col).fill(0).map((n, i) => new Point(Math.floor(i / this.col), i % this.col));
     }
 
     start() {

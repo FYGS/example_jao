@@ -1,4 +1,5 @@
-import { Grid, Point, Ruler } from "./grid";
+import { Grid, Ruler } from "./grid";
+import { Point } from "./Point";
 
 const sleep = (time) => {
     return new Promise((resolve) => {
