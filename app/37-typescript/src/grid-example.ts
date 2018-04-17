@@ -21,6 +21,7 @@ export class GridExample {
                 this.getLWSS();
                 break;
             default:
+                this.getSet([]);
 
         }
         this.grid.add(this.points);
