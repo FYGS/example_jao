@@ -1,12 +1,7 @@
 import { GridEditor } from "./grid-editor";
 import { GridExample } from "./grid-example";
 import { Point } from "./Point";
-
-export interface Ruler {
-    run: { (): void };
-    grid: Grid;
-    save: { (): void };
-}
+import { Ruler } from "./Ruler";
 
 export class Grid {
     time: number = 20;

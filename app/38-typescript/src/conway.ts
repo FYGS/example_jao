@@ -1,6 +1,7 @@
-import { Grid, Ruler } from "./grid";
+import { Grid } from "./grid";
 import { Point } from "./Point";
 import { sleep } from "./sleep";
+import { Ruler } from "./Ruler";
 
 export class Conway implements Ruler {
     previousPoints: Set<Point> = new Set();
