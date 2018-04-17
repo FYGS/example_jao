@@ -1,4 +1,6 @@
 import { GridEditor } from "./grid-editor";
+import { GridExample } from "./grid-example";
+import { Point } from "./Point";
 
 export interface Ruler {
     start: {(): void};
@@ -7,16 +9,18 @@ export interface Ruler {
 }
 
 export class Grid {
-    time: number = 100;
+    time: number = 20;
     ruler: Ruler = undefined;
     isRunning: boolean = false;
     element: HTMLElement;
     gridEditor: GridEditor = undefined;
+    example: GridExample = undefined;
 
     cells: HTMLElement[][];
 
     constructor(public row: number, public col: number, public cellSize: number = 30) { 
         this.gridEditor = new GridEditor(this);
+        this.example = new GridExample(this);
     }
 
     render(element: HTMLElement) {
@@ -80,6 +84,12 @@ export class Grid {
         cell.classList.add('active');
     }
 
+    add(points: Set<Point>) {
+        points.forEach(p => {
+            this.set(p.x, p.y);
+        });
+    }
+
     reset() {
         this.cells.forEach(r => r.forEach(c => c.classList.remove('active')));
     }
@@ -95,5 +105,9 @@ export class Grid {
     setRuler(ruler: Ruler) {
         this.ruler = ruler;
         ruler.grid = this;
+    }
+
+    getCenter(): Point {
+        return new Point(Math.floor(this.row / 2), Math.floor(this.col / 2));
     }
 }

@@ -20,9 +20,8 @@ export class Conway implements Ruler {
 
     render() {
         this.grid.reset();
-        this.points.forEach(p => {
-            this.grid.set(p.x, p.y);
-        });
+        this.grid.add(this.points);
+        
     }
 
     start() {
