@@ -7,9 +7,17 @@ export class Conway implements Ruler {
     points: Set<Point> = new Set();
     public grid: Grid;
 
-    render() {
-        this.grid.remove(this.previousPoints);
-        this.grid.add(this.points);
+    save() {
+        const pointSet = new Set();
+        this.grid.cells.forEach((row, i) => row.forEach((cell, j) => {
+            if (cell.classList.contains('active')) {
+                const p = new Point(i, j);
+                pointSet.add(p);
+            }
+        }));
+        this.previousPoints = new Set();
+        this.points = pointSet;
+        this.render();
     }
 
     run() {
@@ -19,6 +27,11 @@ export class Conway implements Ruler {
         this.iterate().then(() => {
             this.run();
         });
+    }
+
+    render() {
+        this.grid.remove(this.previousPoints);
+        this.grid.add(this.points);
     }
 
     iterate() {
@@ -90,18 +103,4 @@ export class Conway implements Ruler {
     isAlive(ap: Point) {
         return this.points.has(ap);
     }
-
-    save() {
-        const pointSet = new Set();
-        this.grid.cells.forEach((row, i) => row.forEach((cell, j) => {
-            if (cell.classList.contains('active')) {
-                const p = new Point(i, j);
-                pointSet.add(p);
-            }
-        }));
-        this.previousPoints = new Set();
-        this.points = pointSet;
-        this.render();
-    }
-
 }

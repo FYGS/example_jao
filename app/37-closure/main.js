@@ -19,3 +19,4 @@ function repeat(times) {
 
 talk(alice);
 repeat(3);
+
