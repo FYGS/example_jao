@@ -14,13 +14,9 @@ export class Conway implements Ruler {
     points: Set<Point> = new Set();
     public grid: Grid;
 
-    set(set: Set<Point>) {
-        this.points = set;
-        this.render();
-    }
-
     render() {
         this.grid.remove(this.previousPoints);
+        // this.grid.hardReset();
         this.grid.add(this.points);
 
     }
@@ -40,9 +36,9 @@ export class Conway implements Ruler {
                 return;
             }
             const newPoints = this.compute();
-            this.set(newPoints);
             this.previousPoints = this.points;
             this.points = newPoints;
+            this.render();
             if (this.points.size === 0) {
                 this.grid.gridEditor.toggle();
             }
@@ -104,7 +100,9 @@ export class Conway implements Ruler {
                 pointSet.add(p);
             }
         }));
-        this.set(pointSet);
+        this.previousPoints = new Set();
+        this.points = pointSet;
+        this.render();
     }
 
 }
