@@ -65,9 +65,17 @@ export class Conway implements Ruler {
     }
 
     getAround(p: Point): Point[] {
-        return [new Point(p.x - 1, p.y - 1), new Point(p.x - 1, p.y), new Point(p.x - 1, p.y + 1),
-        new Point(p.x, p.y - 1), new Point(p.x, p.y + 1),
-        new Point(p.x + 1, p.y - 1), new Point(p.x + 1, p.y), new Point(p.x + 1, p.y + 1)];
+        return [
+            new Point(p.x - 1, p.y - 1),
+            new Point(p.x - 1, p.y),
+            new Point(p.x - 1, p.y + 1),
+
+            new Point(p.x, p.y - 1),
+            new Point(p.x, p.y + 1),
+
+            new Point(p.x + 1, p.y - 1),
+            new Point(p.x + 1, p.y),
+            new Point(p.x + 1, p.y + 1)];
     }
 
     getPointsToLookFor(): Set<Point> {
