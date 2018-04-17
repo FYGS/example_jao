@@ -19,7 +19,7 @@
   "scripts": {
     "build32": "cd app/32-webpack && webpack --mode development -w",
     "build33": "cd app/33-dom && webpack --mode development -w",
-    "build37": "cd app/37-typescript && webpack --mode development -w",
+    "build38": "cd app/38-typescript && webpack --mode development -w",
     "start35": "node app/35-ajax/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
