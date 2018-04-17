@@ -85,7 +85,6 @@ export class Grid {
     }
 
     start() {
-        
         if (!this.ruler) {
             console.log('no ruler');
         }
@@ -97,6 +96,4 @@ export class Grid {
         this.ruler = ruler;
         ruler.grid = this;
     }
-
-    
 }
