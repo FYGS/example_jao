@@ -27,6 +27,6 @@
                 if (block === undefined) break;
             }
         }
-    }
+    };
     window.blockchain = blockchain; // export
 })();
