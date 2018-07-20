@@ -14,7 +14,7 @@
     "serve-index": "^1.9.1",
     "typescript": "^2.8.1",
     "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^3.1.0"
   },
   "scripts": {
     "build32": "cd app/32-webpack && webpack --mode development -w",
