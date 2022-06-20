@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+}
+
+svg {
+  width: 40em;
+  height: 30em;
+  background-color: #eee;
+  border: 0.1em solid black;
+}
+
+circle {
+  fill: transparent;
+  stroke-width: .02em;
+  stroke: black;
+}
