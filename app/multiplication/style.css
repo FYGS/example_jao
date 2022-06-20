@@ -14,3 +14,12 @@ circle {
   stroke-width: .02em;
   stroke: black;
 }
+
+g.points circle {
+  fill: black;
+}
+
+g.lines line {
+  stroke: black;
+  stroke-width: .02em;
+}
