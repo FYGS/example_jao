@@ -8,15 +8,17 @@
   function Point(x, y) {
 		this.x = x;
 		this.y = y;
-		this.draw = function () {
-			var gPoints = document.querySelector('g.points');
-			var circle = document.createElementNS(svgns, 'circle');
-			circle.setAttributeNS(null, 'cx', this.x);
-			circle.setAttributeNS(null, 'cy', this.y);
-			circle.setAttributeNS(null, 'r', 1);
-			gPoints.appendChild(circle);
-		};
 	}
+
+	// share the function with prototype to avoid duplication in each object
+	Point.prototype.draw = function () {
+		var gPoints = document.querySelector('g.points');
+		var circle = document.createElementNS(svgns, 'circle');
+		circle.setAttributeNS(null, 'cx', this.x);
+		circle.setAttributeNS(null, 'cy', this.y);
+		circle.setAttributeNS(null, 'r', 1);
+		gPoints.appendChild(circle);
+	};
 
   // Static method of Point
   Point.getFromAngle = function(angle) {
