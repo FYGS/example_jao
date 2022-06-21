@@ -1,6 +1,10 @@
+import { Drawable } from './Drawable.js';
+import { Point } from './Point.js';
+
 var svgns = 'http://www.w3.org/2000/svg';
 
-class Line extends Drawable {
+
+export class Line extends Drawable {
 	constructor(point1, point2) {
 		super();
 		this.point1 = point1;

@@ -1,10 +1,11 @@
+import { Drawable } from './Drawable.js';
+
 var svgns = 'http://www.w3.org/2000/svg';
 
 var cx0 = 50;
 var cy0 = 50;
 var r0 = 45;
-
-class Point extends Drawable {
+export class Point extends Drawable {
 	constructor(x, y) {
 		super();
 		this.x = x;
