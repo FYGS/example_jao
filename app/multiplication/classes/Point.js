@@ -1,10 +1,10 @@
 import { Drawable } from './Drawable.js';
 
-var svgns = 'http://www.w3.org/2000/svg';
+const svgns = 'http://www.w3.org/2000/svg';
 
-var cx0 = 50;
-var cy0 = 50;
-var r0 = 45;
+const cx0 = 50;
+const cy0 = 50;
+const r0 = 45;
 export class Point extends Drawable {
 	constructor(x, y) {
 		super();
@@ -13,8 +13,8 @@ export class Point extends Drawable {
 	}
 
 	static getFromAngle = function (angle) {
-		var cx = cx0 + r0 * Math.cos(angle);
-		var cy = cy0 + r0 * Math.sin(angle);
+		const cx = cx0 + r0 * Math.cos(angle);
+		const cy = cy0 + r0 * Math.sin(angle);
 
 		return new Point(cx, cy);
 	};
@@ -25,8 +25,8 @@ export class Point extends Drawable {
 
 	draw() {
 		super.draw();
-		var gPoints = document.querySelector('g.points');
-		var circle = document.createElementNS(svgns, 'circle');
+		const gPoints = document.querySelector('g.points');
+		const circle = document.createElementNS(svgns, 'circle');
 		circle.setAttributeNS(null, 'cx', this.x);
 		circle.setAttributeNS(null, 'cy', this.y);
 		circle.setAttributeNS(null, 'r', 1);

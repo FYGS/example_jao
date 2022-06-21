@@ -1,7 +1,7 @@
 import { Drawable } from './Drawable.js';
 import { Point } from './Point.js';
 
-var svgns = 'http://www.w3.org/2000/svg';
+const svgns = 'http://www.w3.org/2000/svg';
 
 
 export class Line extends Drawable {
@@ -12,8 +12,8 @@ export class Line extends Drawable {
 	}
 
 	static getFromIndexes(index1, index2, sampleNbr) {
-		var point1 = Point.getFromIndex(index1, sampleNbr);
-		var point2 = Point.getFromIndex(index2, sampleNbr);
+		const point1 = Point.getFromIndex(index1, sampleNbr);
+		const point2 = Point.getFromIndex(index2, sampleNbr);
 
 		return new Line(point1, point2);
 	}
@@ -21,9 +21,9 @@ export class Line extends Drawable {
 	draw() {
 		super.draw();
 
-		var gLines = document.querySelector('g.lines');
+		const gLines = document.querySelector('g.lines');
 
-		var line = document.createElementNS(svgns, 'line');
+		const line = document.createElementNS(svgns, 'line');
 		line.setAttributeNS(null, 'x1', this.point1.x);
 		line.setAttributeNS(null, 'y1', this.point1.y);
 		line.setAttributeNS(null, 'x2', this.point2.x);

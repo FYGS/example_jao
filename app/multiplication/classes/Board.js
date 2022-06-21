@@ -18,13 +18,13 @@ export class Board {
 	}
 
 	drawPoints() {
-		for (var i = 0; i < this.config.sampleNbr; i++) {
+		for (let i = 0; i < this.config.sampleNbr; i++) {
 			Point.getFromIndex(i, this.config.sampleNbr).draw();
 		}
 	}
 
 	drawLines() {
-		for (var i = 0; i < this.config.sampleNbr; i++) {
+		for (let i = 0; i < this.config.sampleNbr; i++) {
 			Line.getFromIndexes(
 				i,
 				i * this.config.multiplicationFactor,
