@@ -1,39 +1,32 @@
-(function () {
-  'use strict';
-  
-  var svgns = "http://www.w3.org/2000/svg";
+var svgns = 'http://www.w3.org/2000/svg';
 
-  function Line(point1, point2) {
-    this.point1 = point1;
-    this.point2 = point2;
-  }
+class Line extends Drawable {
+	constructor(point1, point2) {
+		super();
+		this.point1 = point1;
+		this.point2 = point2;
+	}
 
-  Line.prototype.draw = function () {
-    console.log("this: ", this);
-    Object.getPrototypeOf(Object.getPrototypeOf(this)).draw();
-    console.log("this: ", this);
+	static getFromIndexes(index1, index2, sampleNbr) {
+		var point1 = Point.getFromIndex(index1, sampleNbr);
+		var point2 = Point.getFromIndex(index2, sampleNbr);
 
-    var gLines = document.querySelector("g.lines");
+		return new Line(point1, point2);
+	}
 
-    var line = document.createElementNS(svgns, "line");
-    line.setAttributeNS(null, "x1", this.point1.x);
-    line.setAttributeNS(null, "y1", this.point1.y);
-    line.setAttributeNS(null, "x2", this.point2.x);
-    line.setAttributeNS(null, "y2", this.point2.y);
+	draw() {
+		console.log('this: ', this);
+		super.draw();
+		console.log('this: ', this);
 
-    gLines.appendChild(line);
-  };
+		var gLines = document.querySelector('g.lines');
 
-  // Inheritance from Drawable
-  Object.setPrototypeOf(Line.prototype, Drawable.prototype);
-  console.log("Line.prototype: ", Line.prototype);
+		var line = document.createElementNS(svgns, 'line');
+		line.setAttributeNS(null, 'x1', this.point1.x);
+		line.setAttributeNS(null, 'y1', this.point1.y);
+		line.setAttributeNS(null, 'x2', this.point2.x);
+		line.setAttributeNS(null, 'y2', this.point2.y);
 
-  Line.getFromIndexes = function (index1, index2, sampleNbr) {
-    var point1 = Point.getFromIndex(index1, sampleNbr);
-    var point2 = Point.getFromIndex(index2, sampleNbr);
-
-    return new Line(point1, point2);
-  };
-
-  window.Line = Line;
-})();
+		gLines.appendChild(line);
+	}
+}
