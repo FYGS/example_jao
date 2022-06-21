@@ -19,7 +19,6 @@ export class Board {
 
 	drawPoints() {
 		for (var i = 0; i < this.config.sampleNbr; i++) {
-			console.log('i: ', i);
 			Point.getFromIndex(i, this.config.sampleNbr).draw();
 		}
 	}

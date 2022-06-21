@@ -19,9 +19,7 @@ export class Line extends Drawable {
 	}
 
 	draw() {
-		console.log('this: ', this);
 		super.draw();
-		console.log('this: ', this);
 
 		var gLines = document.querySelector('g.lines');
 
